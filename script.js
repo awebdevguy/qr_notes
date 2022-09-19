@@ -6,28 +6,28 @@ const onGenerateSubmit = (e) => {
 
   clearUI();
 
-  const url = document.getElementById('url').value;
+  const textarea = document.getElementById('textarea').value;
   const size = document.getElementById('size').value;
 
-  if(url === '') {
-    alert('Please enter a URL');
+  if(textarea === '') {
+    alert('Please enter text');
   } else {
     showSpinner();
     setTimeout(() => {
       hideSpinner();
-      generateQRCode(url, size);
+      generateQRCode(textarea, size);
 
       setTimeout(() => {
-        const saveUrl = qr.querySelector('img').src;
-        createSaveBtn(saveUrl);
+        const saveText = qr.querySelector('img').src;
+        createSaveBtn(saveText);
       }, 50)
     }, 1000);
   }
 }
 
-const generateQRCode = (url, size) => {
+const generateQRCode = (textarea, size) => {
   const qrcode = new QRCode('qrcode', {
-    text: url,
+    text: textarea,
     width: size,
     height: size
   });
